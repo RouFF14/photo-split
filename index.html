@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f2f2">
+  <meta name="description" content="画像を2・3・4枚に縦分割し、PNGで保存できる無料ツール。画像は端末内だけで処理されます。">
+  <title>Photo Split</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="studio" aria-label="画像分割スタジオ">
+      <aside class="controls">
+        <div class="step-head"><h2>画像</h2><p>JPG・PNG・WebP</p></div>
+        <button id="dropzone" class="dropzone" type="button">
+          <span class="upload-icon" aria-hidden="true">↑</span>
+          <strong id="file-label">画像をドロップ</strong>
+          <small id="file-detail">またはクリックして選択</small>
+        </button>
+        <input id="file-input" class="sr-only" type="file" accept="image/*">
+
+        <div class="divider"></div>
+        <div class="step-head"><h2>設定</h2><p>切り出しを調整</p></div>
+        <div id="split-picker" class="split-picker" role="group" aria-label="分割数">
+          <button type="button" data-count="2">2枚</button>
+          <button type="button" class="active" data-count="3">3枚</button>
+          <button type="button" data-count="4">4枚</button>
+        </div>
+        <div id="mode-picker" class="mode-picker" role="group" aria-label="出力サイズ">
+          <button type="button" class="active" data-mode="fixed">固定サイズ</button>
+          <button type="button" data-mode="original">元サイズ</button>
+        </div>
+        <div class="fixed-output"><span>出力</span><strong id="output-size">1004 × 2048 px</strong><small>PNG・高画質</small></div>
+
+        <label class="range-label" for="zoom"><span>拡大・縮小</span><output id="zoom-value">100%</output></label>
+        <input id="zoom" type="range" min="50" max="200" value="100" disabled>
+        <label class="range-label" for="position-x"><span>左右位置</span><output id="position-x-value">中央</output></label>
+        <input id="position-x" type="range" min="-100" max="100" value="0" disabled>
+        <label class="range-label" for="position-y"><span>上下位置</span><output id="position-y-value">中央</output></label>
+        <input id="position-y" type="range" min="-100" max="100" value="0" disabled>
+
+        <button id="download-all" class="download-all" type="button" disabled><span>3枚まとめて保存</span><b aria-hidden="true">↓</b></button>
+        <p id="status" class="status" role="status"></p>
+      </aside>
+
+      <section class="preview-area">
+        <div class="preview-head"><h2>プレビュー</h2><p id="preview-help">左から1〜3の順番</p></div>
+        <div id="panels" class="panels" style="--panel-ratio:0.490234375;--split-count:3"></div>
+        <div id="empty-note" class="empty-note"><span aria-hidden="true">↖</span><p><strong>まずは画像を選んでください</strong><br>ここに3枚のプレビューが表示されます</p></div>
+      </section>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
+
